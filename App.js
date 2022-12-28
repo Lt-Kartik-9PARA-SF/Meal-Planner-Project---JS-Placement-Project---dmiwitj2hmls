@@ -7,7 +7,7 @@ let age1 = document.querySelector('#age');
 let DATA = [];
 let minCalories = 200;
 let maxCalories = 1000;
-
+let code = '';
 
 
 async function getData(e) {
@@ -30,10 +30,13 @@ async function getData(e) {
 
         let apiData = await fetch(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&minCalories=${minCalories}&maxCalories=${maxCalories}&number=4&apiKey=${API_KEY}&includeNutrition=true`);
         let data = await apiData.json();
-        
+        code = data.code;
+        console.log(data.code);
         data = data.results;
-        console.log(data);
-        let html = await data.map((ele) => {
+        let html = '';
+        code != 200 ? html = `<h1>API limit reached please try after 24hrs</h1>`:
+        
+         html = await data.map((ele) => {
             return (
                 `
             <div class='displayCard'>
