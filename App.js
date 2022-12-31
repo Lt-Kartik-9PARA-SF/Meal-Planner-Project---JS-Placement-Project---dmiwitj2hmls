@@ -1,6 +1,6 @@
 
 let display = document.querySelector('#display1');
-let API_KEY = '7d777b8582d949459baa52f870db9c3';
+let API_KEY = '7d777b8582d949459baa52f870db9c3a';
 let weight1 = document.querySelector('#weight');
 let height1 = document.querySelector('#height');
 let age1 = document.querySelector('#age');
