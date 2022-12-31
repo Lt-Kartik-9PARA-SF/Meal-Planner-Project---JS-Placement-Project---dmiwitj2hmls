@@ -1,6 +1,6 @@
 
 let display = document.querySelector('#display1');
-let API_KEY = '7d777b8582d949459baa52f870db9c3a';
+let API_KEY = '7d777b8582d949459baa52f870db9c3';
 let weight1 = document.querySelector('#weight');
 let height1 = document.querySelector('#height');
 let age1 = document.querySelector('#age');
@@ -12,8 +12,12 @@ let code = '';
 
 async function getData(e) {
     
+   /// if(height1.value == ''|| weight1.value == ''|| age1.value == ''){
+     //   alert('Height Weigth and Age is Mandatory');
+   //     return;
+  ///  }
 
-        console.log('working');
+      //  console.log('working');
         display1.innerHTML =`<button class="btn btn-primary" type="button" disabled>
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         Loading...
@@ -30,11 +34,13 @@ async function getData(e) {
 
         let apiData = await fetch(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&minCalories=${minCalories}&maxCalories=${maxCalories}&number=4&apiKey=${API_KEY}&includeNutrition=true`);
         let data = await apiData.json();
+        
         code = data.code;
-        console.log(data.code);
+       
         data = data.results;
+        console.log(data);
         let html = '';
-        code != 200 ? html = `<h1>API limit reached please try after 24hrs</h1>`:
+        data == undefined ? html = `<h1>API limit reached please try again after 24Hrs</h1>`:
         
          html = await data.map((ele) => {
             return (

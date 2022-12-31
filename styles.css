@@ -31,3 +31,6 @@ h1{
 p{
     max-width: 55ch;
 }
+img{
+    width: 100%;
+}
