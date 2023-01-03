@@ -33,7 +33,7 @@
             class="form-control mx-1"
             aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-sm"
-            placeholder="in CM" required
+            placeholder="in CM"  
           />
           <br />
           <span class="input-group-text mx-1" id="inputGroup-sizing-sm">Weight</span>
@@ -43,7 +43,7 @@
             class="form-control "
             aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-sm"
-            placeholder="in KG" req
+            placeholder="in KG"  
           />
           <span class="input-group-text mx-1" id="inputGroup-sizing-sm">Age</span>
           <input
@@ -52,44 +52,28 @@
             class="form-control mx-0 "
             aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-sm"
-            placeholder="in Years" required
+            placeholder="in Years"  
+          />
+          <span class="input-group-text mx-1" id="inputGroup-sizing-sm">Gender</span>
+          <input
+            type="text"
+            id="gender"
+            class="form-control mx-2 "
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm"
+            placeholder="Male/Female"  
           />
           <br>
-          <div class="dropdown mx-1">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Activity Level
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Active</a></li>
-              <li><a class="dropdown-item" href="#">Regular</a></li>
-              <li><a class="dropdown-item" href="#">Sedetary</a></li>
-            </ul>
-          </div>
-
-          <div class="input-group mt-1">
-            <div class="input-group-text">
-              <label for="male">Male</label>
-              <input
-                class="form-check-input mt-0"
-                type="radio"
-                value="Male"
-                name="gender"
-                aria-label="Radio button for following text input"
-              />
-            </div>
-            <div class="input-group-text mx-2 my">
-              <label for="female">Female</label>
-              <input
-                class="form-check-input mt-0"
-                type="radio"
-                value="Female"
-                name="gender"
-                aria-label="Radio button for following text input"
-              />
-            </div>
-          </div>
+    
+          <select id="activity" aria-placeholder="Activity Level">
+            <option value="null" id="op1">--Select Activity Level--</option>
+            <option value="light">Light</option>
+            <option value="moderate">Regular</option>
+            <option value="active">Active</option>
+          </select>
+         
         </div>
-        <button type="submit" onclick="getData()" class="btn btn-primary">Generate Meal</button>
+        <button type="submit" id="submit-btn" class="btn btn-primary">Generate Meal</button>
       </form>
     </div>
 

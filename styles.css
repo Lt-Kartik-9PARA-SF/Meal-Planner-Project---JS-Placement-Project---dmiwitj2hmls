@@ -38,3 +38,14 @@ img{
     width: 20vw;
     background-color: red;
 }
+select{
+    border: none;
+    border-radius: 5px;
+    border: 2px dotted yellow;
+}
+option{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#op1{
+    color: red;
+}

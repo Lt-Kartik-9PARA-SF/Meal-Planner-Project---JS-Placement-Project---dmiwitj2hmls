@@ -1,50 +1,86 @@
 
 let display = document.querySelector('#display1');
-//let API_KEY = '7d777b8582d949459baa52f870db9c3a';
-let weight1 = document.querySelector('#weight');
-let height1 = document.querySelector('#height');
+let API_KEY = '7d777b8582d949459baa52f870db9c3a';
+let weight = document.querySelector('#weight');
+let height = document.querySelector('#height');
 let age1 = document.querySelector('#age');
 let DATA = [];
 let minCalories = 200;
-let maxCalories = 1000;
-let code = '';
+let maxCalories = 0;
+let btn = document.querySelector('#submit-btn');
+let gender = document.querySelector('#gender');
+let activity = document.querySelector('#activity');
+btn.addEventListener('click', btnClick);
 
-
-async function getData(e) {
+function btnClick() {
+  if (height.value == '' || weight.value == '' || age.value == '' || gender.value == "" || activity.value == "null") {
+    alert('All the fields are Mandatory');
     
-   /// if(height1.value == ''|| weight1.value == ''|| age1.value == ''){
-     //   alert('Height Weigth and Age is Mandatory');
-   //     return;
-  ///  }
+  }
+  else {
+    getData();
+  }
+}
+async function getData() {
 
-      //  console.log('working');
-        display1.innerHTML =`<button class="btn btn-primary" type="button" disabled>
+
+
+
+  display1.innerHTML = `<button class="btn btn-primary" type="button" disabled>
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         Loading...
       </button>`;
 
-        if (height1.value > 175 && weight1.value > 75) {
-            minCalories = 1000;
-            maxCalories = 3000;
-        }
-        if (age < 10) {
-            maxCalories = 200;
-            minCalories = 100;
-        }
+  if (gender.value === "male" && activity.value === "light") {
+    var BMR = 66.47 + (13.75 * weight.value) + (5.003 * height.value) - (6.755 * age.value);
+    maxCalories = BMR * 1.375;
+    console.log('male light')
+  }
 
-        let apiData = await fetch(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&minCalories=${minCalories}&maxCalories=${maxCalories}&number=4&apiKey=${API_KEY}&includeNutrition=true`);
-        let data = await apiData.json();
-        
-        code = data.code;
-       
-        data = data.results;
-        console.log(data);
-        let html = '';
-        data == undefined ? html = `<h1>API limit reached please try again after 24Hrs</h1>`:
-        
-         html = await data.map((ele) => {
-            return (
-                `
+  else if (gender.value === "male" && activity.value === "moderate") {
+    var BMR = 66.47 + (13.75 * weight.value) + (5.003 * height.value) - (6.755 * age.value);
+    maxCalories = BMR * 1.55;
+  }
+
+  else if (gender.value === "male" && activity.value === "active") {
+    var BMR = 66.47 + (13.75 * weight.value) + (5.003 * height.value) - (6.755 * age.value);
+    maxCalories = BMR * 1.725;
+  }
+
+  else if (gender.value === "female" && activity.value === "light") {
+    var BMR = 655.1 + (9.563 * weight.value) + (1.850 * height.value) - (4.676 * age.value);
+    maxCalories = BMR * 1.375;
+  }
+
+  else if (gender.value === "female" && activity.value === "moderate") {
+    var BMR = 655.1 + (9.563 * weight.value) + (1.850 * height.value) - (4.676 * age.value);
+    maxCalories = BMR * 1.55;
+  }
+
+  else if (gender.value === "female" && activity.value === "active") {
+    var BMR = 655.1 + (9.563 * weight.value) + (1.850 * height.value) - (4.676 * age.value);
+    maxCalories = BMR * 1.725;
+  }
+
+  
+ 
+  
+  
+  console.log("max calories" + maxCalories);
+
+  let apiData = await fetch(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&maxCalories=${maxCalories}&number=4&apiKey=${API_KEY}&includeNutrition=true`);
+  let data = await apiData.json();
+
+  code = data.code;
+
+  data = data.results;
+  console.log(data);
+  let html = '';
+  data == undefined ? html = `<h1>API limit reached please try again after 24Hrs</h1>` :
+
+    html = await data.map((ele) => {
+      return (
+        `
             <div class='displayCard'>
             <h3>${ele.title}</h3>
             <img src= ${ele.image} alt = "image"/>
@@ -53,7 +89,7 @@ async function getData(e) {
           <br>
             <p>
             ${ele.summary
-                }
+        }
             </p>
             <a href=${ele.sourceUrl}>Full Recipie</a>
             <p>Source : ${ele.sourceName}</p>
@@ -63,12 +99,12 @@ async function getData(e) {
             
             </div>
         `
-            )
-        })
+      )
+    })
 
-        display1.innerHTML = html;
+  display1.innerHTML = html;
 
-    
+
 }
  //getData();
 
