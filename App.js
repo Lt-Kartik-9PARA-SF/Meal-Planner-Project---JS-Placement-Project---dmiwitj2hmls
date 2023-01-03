@@ -12,7 +12,7 @@ let activity = document.querySelector('#activity');
 btn.addEventListener('click', btnClick);
 
 function btnClick() {
-  if (height.value == '' || weight.value == '' || age.value == '' || gender.value == "" || activity.value == "null") {
+  if (height.value == '' || weight.value == '' || age.value == ''  || activity.value == "null") {
     alert('All the fields are Mandatory');
 
 
@@ -25,13 +25,13 @@ function btnClick() {
 async function getData() {
 
   console.log("started");
-
+console.log(gender.value);
   display1.innerHTML = `<button class="btn btn-primary" type="button" disabled>
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         Loading...
       </button>`;
 
-  if (gender.value === "male" && activity.value === "light") {
+  if (gender.value == "male" && activity.value === "light") {
     var BMR = 66.47 + (13.75 * weight.value) + (5.003 * height.value) - (6.755 * age.value);
     maxCalories = BMR * 1.375;
     console.log('male light');
@@ -107,7 +107,7 @@ async function getData() {
             ${ele.summary
         }
             </p>
-            <a href=${ele.sourceUrl}>Full Recipie</a>
+            <a href=${ele.sourceUrl}>Full Recipe</a>
             <p>Source : ${ele.sourceName}</p>
             <span>
             <bold>Ready in ${ele.readyInMinutes} min</bold>
