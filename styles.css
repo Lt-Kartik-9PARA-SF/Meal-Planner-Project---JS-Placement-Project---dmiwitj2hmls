@@ -1,12 +1,14 @@
 body{
     background-image: url('https://i.pinimg.com/originals/a1/12/15/a112152ef5b6d8fe425dd3cf0c3c7dd7.jpg');
     min-height: 120vh;
+
 }
 #display1{
     margin-top: 15px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    
     
 }
 .displayCard{
@@ -41,11 +43,32 @@ img{
 select{
     border: none;
     border-radius: 5px;
-    border: 2px dotted yellow;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
 }
 option{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-#op1{
-    color: red;
+footer{
+    background-color: black;
+    color: white;
+    text-align: center;
+    margin-top: 1rem;
 }
+@media only screen and (max-width: 900px) {
+    #display1 {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      
+
+    }
+    .displayCard{
+        width: 90%;
+    }
+   
+    #activity{
+        margin-top: 1rem;
+        border: 5px;
+    }
+  }
