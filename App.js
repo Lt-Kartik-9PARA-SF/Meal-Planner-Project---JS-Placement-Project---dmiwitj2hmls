@@ -11,21 +11,31 @@ let gender = document.querySelector('#gender');
 let activity = document.querySelector('#activity');
 btn.addEventListener('click', btnClick);
 
+function recipe(event) {
+  if (event.target.nextElementSibling.classList.contains('frame')) {
+    event.target.nextElementSibling.classList.replace('frame', 'show');
+
+  } else {
+    event.target.nextElementSibling.classList.replace('show', 'frame');
+  }
+}
+
 function btnClick() {
-  if (height.value == '' || weight.value == '' || age.value == ''  || activity.value == "null") {
+  if (height.value == '' || weight.value == '' || age.value == '' || activity.value == "null") {
     alert('All the fields are Mandatory');
-
-
+    return;
   }
-  else {
-    getData();
+  if(height.value <= 0 || age <= 0 || height.value > 250 || weight.value > 150 || age.value > 100){
+    alert("Please Enter Valid Values");
+    return;
   }
-
+  getData();
+  
 }
 async function getData() {
 
   console.log("started");
-console.log(gender.value);
+  console.log(gender.value);
   display1.innerHTML = `<button class="btn btn-primary" type="button" disabled>
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         Loading...
@@ -68,19 +78,13 @@ console.log(gender.value);
   }
 
   maxCalories = Math.round(maxCalories);
-
-
-
   console.log("max calories => " + maxCalories);
 
   try {
-
-
     let apiData = await fetch(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&maxCalories=${maxCalories}&number=4&apiKey=${API_KEY}&includeNutrition=true`);
     var data = await apiData.json();
     console.log("api data sucessful");
   }
-
   catch (e) {
     console.log("entered catch block");
     display.innerHTML = `<h1>${e}</h1>`;
@@ -107,7 +111,11 @@ console.log(gender.value);
             ${ele.summary
         }
             </p>
-            <a href=${ele.sourceUrl}>Full Recipe</a>
+            <div class="recipeBox">
+            <button type="button" onclick="recipe(event)"  class="btn btn-primary">Recipe</button>
+            <iframe src=${ele.sourceUrl} class="frame"  width="90%" title="Recipe"></iframe>
+            </div>
+           
             <p>Source : ${ele.sourceName}</p>
             <span>
             <bold>Ready in ${ele.readyInMinutes} min</bold>
@@ -120,8 +128,6 @@ console.log(gender.value);
 
   display1.innerHTML = html;
   console.log(' reached end');
-
-
 }
  //getData();
 
