@@ -1,5 +1,7 @@
 body{
     background-image: url('mixed_colorful_background_hd_background.jpg');
+    background-size: cover;
+    background-repeat: none;
     min-height: 120vh;
 
 }
