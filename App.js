@@ -40,6 +40,7 @@ async function getData() {
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         Loading...
       </button>`;
+      
 
   if (gender.value == "male" && activity.value === "light") {
     var BMR = 66.47 + (13.75 * weight.value) + (5.003 * height.value) - (6.755 * age.value);
